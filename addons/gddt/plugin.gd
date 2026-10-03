@@ -2,7 +2,7 @@
 extends EditorPlugin
 
 
-const SettingsManagerScript := preload("res://addons/gddt/settings_module/settings_manager.gd")
+const SettingsManagerScript := preload("res://addons/gddt/settings_module/manager/settings_manager.gd")
 const SettingsModuleScript := preload("res://addons/gddt/settings_module/settings_module.gd")
 
 var _settings_manager

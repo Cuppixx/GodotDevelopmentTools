@@ -2,7 +2,7 @@
 class_name GDDTSettingsModule extends RefCounted
 
 
-const SettingsManagerScript := preload("res://addons/gddt/settings_module/settings_manager.gd")
+const SettingsManagerScript := preload("res://addons/gddt/settings_module/manager/settings_manager.gd")
 const SettingsContextMenuScript := preload("res://addons/gddt/settings_module/settings_context_menu.gd")
 const SettingsMenuScript := preload("res://addons/gddt/settings_module/menu/settings_menu.gd")
 const SettingsTabControllerScript := preload("res://addons/gddt/settings_module/settings_tab_controller.gd")
@@ -25,8 +25,9 @@ func initialize(plugin: EditorPlugin, settings_manager, editor_settings: EditorS
     _editor_settings.settings_changed.connect(_on_editor_settings_changed)
 
     _settings_context_menu_plugin = SettingsContextMenuScript.new(_settings_manager)
-    if _plugin != null and _plugin.has_method("add_context_menu_plugin"):
-        _plugin.add_context_menu_plugin(EditorContextMenuPlugin.CONTEXT_SLOT_INSPECTOR_PROPERTY, _settings_context_menu_plugin)
+    if _settings_context_menu_plugin is EditorContextMenuPlugin and _plugin != null:
+        if _plugin.has_method("add_context_menu_plugin"):
+            _plugin.add_context_menu_plugin(EditorContextMenuPlugin.CONTEXT_SLOT_INSPECTOR_PROPERTY, _settings_context_menu_plugin)
 
     _settings_menu = SettingsMenuScript.new()
     _settings_menu.initialize(_plugin, _settings_manager)

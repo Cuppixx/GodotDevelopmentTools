@@ -1,5 +1,5 @@
 @tool
-class_name GDDTSettingsContextMenu extends RefCounted
+class_name GDDTSettingsContextMenu extends EditorContextMenuPlugin
 
 
 var _settings_manager
